@@ -17,8 +17,8 @@ private:
     void odomCallback(const nav_msgs::Odometry::ConstPtr& msg) {
         geometry_msgs::TransformStamped odom_tf;
         odom_tf.header.stamp = msg->header.stamp;
-        odom_tf.header.frame_id = "base_link";       // or "world" or your fixed frame
-        odom_tf.child_frame_id = "body_link";   // or "robot", whatever your robot's frame is
+        odom_tf.header.frame_id = "odom";       // or "world" or your fixed frame
+        odom_tf.child_frame_id = "base_link";   // or "robot", whatever your robot's frame is
 
         odom_tf.transform.translation.x = msg->pose.pose.position.x;
         odom_tf.transform.translation.y = msg->pose.pose.position.y;
