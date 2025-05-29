@@ -27,10 +27,12 @@ catkin_package(
 
 # Specifica dove si trovano i tuoi file sorgente
 add_executable(odomtotf src/odomtotf.cpp)
+add_executable(laserfilternode src/LaserFilterNode.cpp)
 
 
 # Collega le librerie richieste per ogni nodo
 target_link_libraries(odomtotf ${catkin_LIBRARIES})
+target_link_libraries(laserfilternode ${catkin_LIBRARIES})
 
 # Aggiungi le directory dove si trovano gli header
 include_directories(

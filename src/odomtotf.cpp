@@ -60,12 +60,12 @@ int main(int argc, char** argv) {
     tf2.header.stamp = ros::Time::now();
     tf2.header.frame_id = "base_link";
     tf2.child_frame_id = "sick_back";
-    tf2.transform.translation.x = -0.27;
+    tf2.transform.translation.x = -0.3;
     tf2.transform.translation.y = 0.0;
-    tf2.transform.translation.z = 0.0;
+    tf2.transform.translation.z = -0.115;
 
     tf2::Quaternion q2;
-    q2.setRPY(0, 0, 3.14159); // 180 degrees in radians
+    q2.setRPY(-3.142, 0, 3.14159); // 180 degrees in radians
     tf2.transform.rotation.x = q2.x();
     tf2.transform.rotation.y = q2.y();
     tf2.transform.rotation.z = q2.z();
