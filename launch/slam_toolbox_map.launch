@@ -1,0 +1,18 @@
+<launch>
+  <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox_node" output="screen">
+
+    <param name="odom_frame" value="odom"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="scan_topic" value="/scan_merged"/>
+    <param name="mode" value="mapping"/>
+    <param name="max_laser_range" value="20.0"/>   
+    <param name="min_laser_range" value="0.1"/>    
+    <param name="max_correspondence_distance" value="0.75"/>
+    <param name="minimum_time_between_scans" value="0.5"/>
+    <param name="throttle_scans" value="1"/>
+    <param name="use_map_saver" value="true"/>
+    <param name="map_start_at_dock" value="false"/>
+
+    </node>
+</launch>
