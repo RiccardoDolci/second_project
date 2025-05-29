@@ -4,9 +4,9 @@
     <param name="cloud_destination_topic" value="/merged_laser_cloud"/>
     <param name="scan_destination_topic" value="/scan_merged"/>
     <param name="laserscan_topics" value="/scan_front /scan_back"/>
-    <param name="angle_min" value="-3,1415926535897932384626433832795"/>
-    <param name="angle_max" value="3,1415926535897932384626433832795"/>
-    <param name="angle_increment" value="0,00871454272840441952416822020327"/> 
+    <param name="angle_min" value="-3.141592653589793238462643383279"/>
+    <param name="angle_max" value="3.141592653589793238462643383279"/>
+    <param name="angle_increment" value="0.00871454272840441952416822020325"/> 
     <param name="scan_time" value="0.0333"/> 
     <param name="range_min" value="0.1"/>    
     <param name="range_max" value="20.0"/>   
