@@ -31,7 +31,7 @@ private:
     
 
     void cleanBackCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
-        if (msg->ranges.size() < 711) {
+        if (msg->ranges.size() < 675) {
             ROS_WARN("Scan back troppo corto: %lu elementi", msg->ranges.size());
             return;
         }
@@ -40,14 +40,17 @@ private:
         clean_msg.header.frame_id = "laser_back";  // Imposta il frame corretto
         
 
-        if (!msg->intensities.empty() && msg->intensities.size() >= 712) {
-            clean_msg.intensities.assign(msg->intensities.begin() + 89, msg->intensities.begin() + 711);
+        if (!msg->intensities.empty() && msg->intensities.size() >= 675) {
+            clean_msg.intensities.assign(msg->intensities.begin() + 135, msg->intensities.begin() + 675);
         }
 
 
-        clean_msg.angle_min = msg->angle_min + msg->angle_increment * 90;
-        clean_msg.angle_max = clean_msg.angle_min + msg->angle_increment * (711-90 );
-        clean_msg.ranges.assign(msg->ranges.begin() + 89, msg->ranges.begin() + 711);
+        clean_msg.angle_min = msg->angle_min + msg->angle_increment * 135;
+        clean_msg.angle_max = clean_msg.angle_min + msg->angle_increment * (675-135-1);
+        clean_msg.ranges.assign(msg->ranges.begin() + 90, msg->ranges.begin() + 675);
+
+        ROS_INFO("DIMENSIONE_back: %lu", clean_msg.ranges.size());
+
         pub_back_.publish(clean_msg);
     }
 
@@ -61,14 +64,14 @@ private:
         clean_msg.header.frame_id = "laser_front";  // Imposta il frame corretto
         
 
-        if (!msg->intensities.empty() && msg->intensities.size() >= 712) {
-            clean_msg.intensities.assign(msg->intensities.begin() + 90, msg->intensities.begin() + 711);
+        if (!msg->intensities.empty() && msg->intensities.size() >= 675) {
+            clean_msg.intensities.assign(msg->intensities.begin() + 135, msg->intensities.begin() + 675);
         }
 
 
-        clean_msg.angle_min = msg->angle_min + msg->angle_increment * 90;
-        clean_msg.angle_max = clean_msg.angle_min + msg->angle_increment * (711-90 );
-        clean_msg.ranges.assign(msg->ranges.begin() + 90, msg->ranges.begin() + 711);
+        clean_msg.angle_min = msg->angle_min + msg->angle_increment * 135;
+        clean_msg.angle_max = clean_msg.angle_min + msg->angle_increment * (675-135-1 );
+        clean_msg.ranges.assign(msg->ranges.begin() + 90, msg->ranges.begin() + 675);
         pub_front_.publish(clean_msg);
     }
 };
