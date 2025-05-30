@@ -1,14 +1,32 @@
 <launch>
+
     <!-- Nodo 1 -->
-    <node pkg="first_project" type="gps_odometer" name="gps_odometer" output="screen" />
+    <node pkg="first_project" type="odomtotf" name="odomtotf" output="screen" />
 
     <!-- Nodo 2 -->
-    <node pkg="first_project" type="odometer" name="odometer" output="screen" />
+    <node pkg="second_project" type="LaserFilterNode" name="LaserFilterNode" output="screen" />
 
     <!-- Nodo 3 -->
-    <node pkg="first_project" type="sector_times" name="sector_times" output="screen" />
+    <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+	<param name="destination_frame" value="base_link"/>
+	<param name="cloud_destination_topic" value="/merged_cloud"/>
+	<param name="scan_destination_topic" value="/scan_multi"/>
+	<param name="laserscan_topics" value ="/scan_front_clean /scan_back_clean" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+	<param name="angle_min" value="-3.141592653589793238462643383279"/>
+	<param name="angle_max" value="3.141592653589793238462643383279"/>
+	<param name="angle_increment" value="0.005058925368"/>
+	<param name="scan_time" value="0.0333333"/>
+	<param name="range_min" value="0.0"/>
+	<param name="range_max" value="100.0"/>
+	</node>
 
-    <!-- RViz (opzionale: specifica il file .rviz se lo hai) -->
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find first_project)/config/tf_odom_config.rviz" output="screen" />
+    <!-- Nodo 4 -->
+    <node name="slam_toolbox" pkg="slam_toolbox" type="sync_slam_toolbox_node" output="screen">
+    <param name="scan_topic" value="/scan_multi"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_link"/> <!-- o base_link se usi quello -->
+    <rosparam command="load" file="$(find second_project)/config/slam_config_file.yaml"/>
+    </node>
+
 </launch>
-
