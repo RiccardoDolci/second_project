@@ -9,6 +9,7 @@ class OdomToTF {
 public:
     OdomToTF() {
         odom_sub_ = nh_.subscribe("/odometry", 10, &OdomToTF::odomCallback, this);
+        
     }
 
 private:
@@ -30,6 +31,10 @@ private:
 
         tf_broadcaster_.sendTransform(odom_tf);
     }
+
+    
+
+
 };
 
 int main(int argc, char** argv) {
