@@ -15,7 +15,7 @@ define turtlebot position
 (
   pose [ 0.0 0.0 0.0 0.0 ] 
 
-  odom_error [0.01 0.01 999999 999999 999999 0.01]
+  odom_error [0.01 0.01 0.01 0.01 0.01 0.01]
 
   size [ 0.54 0.40 0.40 ]
   origin [ 0.0 0.0 0.0 0.0 ]

@@ -21,18 +21,18 @@ interval_sim 100  # simulation timestep in milliseconds
 
 window
 (
-  size [ 600.0 700.0 ]
+  size [ 9000.0 11000.0 ]
   center [ 0.0 0.0 ]
   rotate [ 0.0 0.0 ]
-  scale 60
+  scale 80
 )
 
 floorplan
 (
-  name "map"
-  bitmap "../map.png"
-  size [ 10.0 10.0 2.0 ]
-  pose [  5.0  5.0 0.0 0.0 ]
+  name "maze"
+  bitmap "../maze.png"
+  size [ 31.9 20.7 2.0 ]
+  pose [  15.95 10.35 0.0 0.0 ]
 )
 
 # throw in a robot

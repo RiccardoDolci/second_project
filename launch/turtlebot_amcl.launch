@@ -6,8 +6,8 @@ kobuki_hexagons_kinect kobuki_hexagons_r200 roomba_circles_asus_xtion_pro roomba
   <!-- Name of the map to use and initial position -->
   <arg name="map_file"       default="$(find second_project)/maps/map.yaml"/> 
   <arg name="world_file"     default="$(find second_project)/maps/stage/maze.world"/>
-  <arg name="initial_pose_x" default="2.0"/>
-  <arg name="initial_pose_y" default="2.0"/>
+  <arg name="initial_pose_x" default="8.0"/>
+  <arg name="initial_pose_y" default="9.0"/>
   <arg name="initial_pose_a" default="0.0"/>
 
   <arg name="odom_frame_id"   default="odom"/>
@@ -19,7 +19,7 @@ kobuki_hexagons_kinect kobuki_hexagons_r200 roomba_circles_asus_xtion_pro roomba
  <!--  ***************** Robot simulation *****************  -->
   <node pkg="stage_ros" type="stageros" name="stageros" args="$(arg world_file)">
     <param name="base_watchdog_timeout" value="0.5"/>
-    <remap from="scan_multi" to="scan"/>
+    <remap from="base_scan" to="scan"/>
   </node>
 
 
@@ -60,8 +60,8 @@ kobuki_hexagons_kinect kobuki_hexagons_r200 roomba_circles_asus_xtion_pro roomba
 
 
   <!--  ****** amcl *****  -->
-  <include file="$(find nav2d_conf)/launch/amcl.launch.xml">
-    <arg name="scan_topic" value="scan_multi"/>
+  <include file="$(find second_project)/launch/amcl.launch.xml">
+    <arg name="scan_topic" value="scan"/>
     <arg name="use_map_topic" value="true"/>
     <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
     <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
