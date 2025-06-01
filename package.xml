@@ -19,7 +19,19 @@
   <build_depend>geometry_msgs</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>tf</build_depend>
-   <build_depend>tf2_ros</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <build_depend>actionlib</build_depend>
+  <exec_depend>actionlib</exec_depend>
+  <build_depend>actionlib_msgs</build_depend>
+  <exec_depend>actionlib_msgs</exec_depend>
+  <build_depend>move_base_msgs</build_depend>
+  <exec_depend>move_base_msgs</exec_depend>
+  <build_depend>roslib</build_depend>
+  <exec_depend>roslib</exec_depend>
+
+
   <!--<build_depend>first_project</build_depend>--> <!-- Include il pacchetto per il messaggio personalizzato --> 
 
   <!-- Dipendenze di esecuzione -->

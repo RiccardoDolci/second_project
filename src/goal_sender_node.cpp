@@ -7,6 +7,8 @@
 #include <vector>
 #include <geometry_msgs/Quaternion.h>
 #include <tf/tf.h>
+#include <ros/package.h> // Add this at the top
+
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
@@ -16,17 +18,18 @@ struct Pose2D {
     double theta;
 };
 
-std::vector<Pose2D> readGoalsFromCSV(const std::string& filename) {
-    std::vector<Pose2D> goals;
-    std::ifstream file(filename);
-    if (!file.is_open()) {
+std::vector<Pose2D> readGoalsFromCSV(const std::string& filename) { //Function to read goals from a CSV file
+    // Open the CSV file and read goals
+    std::vector<Pose2D> goals; // Vector to store goals
+    std::ifstream file(filename); 
+    if (!file.is_open()) { 
         ROS_ERROR("Failed to open file: %s", filename.c_str());
         return goals;
     }
 
-    std::string line;
-    while (std::getline(file, line)) {
-        std::stringstream ss(line);
+    std::string line; // Variable to store each line read from the file
+    while (std::getline(file, line)) { 
+        std::stringstream ss(line); 
         std::string item;
         Pose2D pose;
 
@@ -39,18 +42,19 @@ std::vector<Pose2D> readGoalsFromCSV(const std::string& filename) {
         if (!std::getline(ss, item, ',')) continue;
         pose.theta = std::stod(item);
 
-        goals.push_back(pose);
+        goals.push_back(pose); 
     }
     file.close();
     return goals;
 }
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "goal_publisher_node");
+    ros::init(argc, argv, "goal_sender_node");
     ros::NodeHandle nh;
 
     // CSV file path
-    std::string csv_path = "second_project/csv/goals.csv";
+    std::string pkg_path = ros::package::getPath("second_project");
+    std::string csv_path = pkg_path + "/csv/goals.csv";
 
     // Read goals from CSV
     std::vector<Pose2D> goals = readGoalsFromCSV(csv_path);
@@ -60,12 +64,12 @@ int main(int argc, char** argv) {
     }
     ROS_INFO("Loaded %lu goals from %s", goals.size(), csv_path.c_str());
 
-    MoveBaseClient ac("move_base", true);
+    MoveBaseClient ac("move_base", true); // Create action client for move_base
     ROS_INFO("Waiting for move_base action server...");
     ac.waitForServer();
 
-    for (size_t i = 0; i < goals.size(); ++i) {
-        move_base_msgs::MoveBaseGoal goal;
+    for (size_t i = 0; i < goals.size(); ++i) { // Loop through each goal created from the CSV file 
+        move_base_msgs::MoveBaseGoal goal;      // Create a goal message 
         goal.target_pose.header.frame_id = "map";
         goal.target_pose.header.stamp = ros::Time::now();
 
