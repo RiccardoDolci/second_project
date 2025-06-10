@@ -49,7 +49,6 @@ private:
         clean_msg.angle_max = clean_msg.angle_min + msg->angle_increment * (675-135-1);
         clean_msg.ranges.assign(msg->ranges.begin() + 90, msg->ranges.begin() + 675);
 
-        ROS_INFO("DIMENSIONE_back: %lu", clean_msg.ranges.size());
 
         pub_back_.publish(clean_msg);
     }

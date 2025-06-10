@@ -30,9 +30,9 @@ include_directories(
 )
 
 add_executable(odomtotf src/odomtotf.cpp)
-add_executable(laserfilternode src/LaserFilterNode.cpp)
+add_executable(LaserFilterNode src/LaserFilterNode.cpp)
 add_executable(goal_sender_node src/goal_sender_node.cpp)
 
 target_link_libraries(odomtotf ${catkin_LIBRARIES})
-target_link_libraries(laserfilternode ${catkin_LIBRARIES})
+target_link_libraries(LaserFilterNode ${catkin_LIBRARIES})
 target_link_libraries(goal_sender_node ${catkin_LIBRARIES})

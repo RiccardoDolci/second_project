@@ -1,7 +1,7 @@
 <launch>
 
     <!-- Nodo 1 -->
-    <node pkg="first_project" type="odomtotf" name="odomtotf" output="screen" />
+    <node pkg="second_project" type="odomtotf" name="odomtotf" output="screen" />
 
     <!-- Nodo 2 -->
     <node pkg="second_project" type="LaserFilterNode" name="LaserFilterNode" output="screen" />
@@ -28,5 +28,8 @@
     <param name="base_frame" value="base_link"/> <!-- o base_link se usi quello -->
     <rosparam command="load" file="$(find second_project)/config/slam_config_file.yaml"/>
     </node>
+
+    <!-- Rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find second_project)/rviz/mapping.rviz"/>
 
 </launch>
